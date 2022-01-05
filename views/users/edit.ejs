@@ -1,0 +1,104 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <style>
+        body {
+            background-image: url(https://www.sagatraining.ca/wp-content/uploads/2018/10/background-images-for-login-form-8.jpg);
+            color: aliceblue;
+        }
+        
+        h1 {
+            color: aliceblue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Web_Ed</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class=" nav navbar-nav navbar-right">
+                    <li><a href="/login">login</a></li>
+                    <li><a href="/register">signup</a></li>
+                    <li><a href="/logout">logout</a></li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav> -->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span
+            >Web_Ed</a
+          >
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <% if(!currentUser){ %>
+            <li><a href="/login">Login</a></li>
+                <li><a href="/register">Signup</a></li>
+                <% } else { %>
+                    <li>
+                        <a href="#">Currently Logged in as <%=currentUser.username %></a>
+                    </li>
+                    <li><a href="/logout">logout</a></li>
+                    <% } %>
+                        </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div text-align="center" class="container">
+        <div style="width: 30%; margin: 25px auto">
+            <h1>Edit Profile</h1>
+
+            <form action="/register" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="username" aria-describedby="emailHelp" value="<%= user.username %> " />
+                </div>
+                <div class="form-group">
+                    <label for="firstname">First Name</label>
+                    <input type="text" class="form-control" name="FirstName" id="firstname" value="<%= user.FirstName %> " />
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" class="form-control" name="LastName" id="lastname" value="<%= user.Lastname %> " />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" name="email" id="email" value="<%= user.email %> " />
+                </div>
+                <div class="form-group">
+                    <label for="image">image URL</label>
+                    <input type="text" class="form-control" name="image" id="image" value="<%= user.image %> " />
+                </div>
+                <div class="form-group">
+                    <label for="adminCode">Admin Code</label>
+                    <input type="password" class="form-control" name="adminCode" id="adminCode" placeholder="Admin Code" />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- <form action="/register" method="post">
+        <input type="text" name="username" placeholder="username">
+        <input type="password" name="password" placeholder="password">
+        <input type="text" name="FirstName" placeholder="First Name">
+        <input type="text" name="LastName" placeholder="Last Name">
+        <input type="email" name="email" placeholder="Someone@something.com">
+        <input type="text" name="image" placeholder="image url">
+        <input type="text" name="adminCode" placeholder="Admin Code">
+        <button>signup</button>
+    </form> -->
+</body>
+
+</html>

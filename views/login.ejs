@@ -1,0 +1,188 @@
+<html>
+
+<head>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <title>Login</title>
+    <style>
+        .muli {
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+            width: 60%;
+            margin-left: 20%;
+        }
+        
+        .navItem {
+            text-align: right;
+            margin-left: 73%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Datahanks</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+
+                    <% if(!currentUser){ %>
+                        <li class="nav-item "><a class="nav-link " href="/login ">Login</a></li>
+                        <li class="active nav-item">
+                            <a class="nav-link" href="/register ">Signup</a>
+                        </li>
+                        <% } else { %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="# ">Currently Logged in as <%=currentUser.username %> </a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="/logout ">Logout</a></li>
+                            <% } %>
+
+
+
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="row" style="margin-top: 5%;">
+        <div class="col-md-5" style="text-align: center;">
+            <h1 style="font-weight: bold;color: blue;font-size: 4rem;">Data Hanks</h1>
+            <h5>DataHanks is a platform to connect and share</h5>
+            <h5> educational content with people...</h5>
+            <hr style="margin-left: 12%;margin-right: 10%;">
+        </div>
+
+
+
+
+        <div class="col-md-7 col-sm-12" style="margin: auto;">
+            <div class="">
+
+                <div class=" muli ">
+                    <div class="" style="margin-bottom: 5px;padding: 20px 20px 20px 20px;">
+                        <form action="/login" method="post">
+
+
+                            <div class="row g-3">
+                                <div class="col  form-floating">
+                                    <input type="text" name="username" class="form-control" id="username" aria-label="username" placeholder="username" required=" " />
+                                    <label for="username"> username</label>
+
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row g-3">
+                                <div class="col form-floating">
+
+                                    <input type="password" class="form-control" name="password" id="password" aria-label="password" placeholder="password" required=" " />
+                                    <label style="text-align: center;" for="password">password</label>
+
+                                </div>
+
+                            </div>
+                            <hr>
+                            <div class="row g-3">
+                                <div class="col ">
+                                    <button type="submit" class="btn btn-primary" style="width: 92%;margin-left: 4%;height: 50px;padding-top: 5px;">Log In</button>
+
+                                    <a style="text-decoration: none;text-align: center;margin-left: 36%;" href="/forgot">forgotten password?</a>
+                                </div>
+
+                            </div>
+                            <hr>
+                            <div class="row g-3">
+                                <div class="col">
+                                    <a style="margin-left:10%; width:81%" href="/register" class="btn btn-success btn-lg" role="button" aria-pressed="true">Create New Account</a>
+
+                                </div>
+
+                            </div>
+
+
+                    </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+
+    <!-- <div class="container muli">
+        <div class="list-group-item active">
+            <h2 style="text-align: center;">Sign-up form</h2>
+
+        </div>
+        <div class="list-group">
+            <form action="/register" method="POST ">
+                <div class="row-g-3">
+                    <div class="col list-group-item ">
+                        <label>First Name :</label>
+                        <input type="text " class="input1" name="FirstName " id="FirstName " required=" " />
+
+                    </div>
+                    <div class="col list-group-item ">
+                        <label>Last Name :</label>
+                        <input type="text " class="input1" name="LastName " id="LastName " required=" " />
+
+                    </div>
+
+                </div>
+
+                <div class="list-group-item ">
+                    <label>Username :</label>
+                    <input class="input1" type="text " name="username " required=" " />
+
+                </div>
+                <div class="list-group-item ">
+                    <label>Password :</label>
+                    <input type="password " class="input1" name="password " required=" " />
+
+                </div>
+
+                <div class="list-group-item ">
+                    <label>Email   :</label>
+                    <input type="email " class="input1" name="email " id="email " required=" " />
+
+                </div>
+                <div class="list-group-item ">
+                    <label>image   :</label>
+                    <input type="text " class="input1" name="image " id="image " required=" " />
+
+                </div>
+                <div class="list-group-item ">
+                    <label>Admin Code :</label>
+                    <input type="password " class="input1" name="adminCode " id="adminCode " required=" " />
+
+                </div>
+
+                <button type="submit "> -->
+    <!-- <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Register
+          </button>
+            </form>
+        </div>
+    </div>
+    </div> -->
+</body>
+
+</html>

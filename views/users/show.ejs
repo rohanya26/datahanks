@@ -1,0 +1,547 @@
+<html>
+
+<head>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <title>Register</title>
+    <style>
+        .muli {
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+            width: 70%;
+            margin: auto;
+            margin-bottom: 5%;
+        }
+        
+        .navItem {
+            text-align: right;
+            margin-left: 73%;
+        }
+        
+        @media only screen and (max-width: 600px) {}
+    </style>
+    <!-- <style>
+      html {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background: linear-gradient(#e6dada, #274046);
+      }
+
+      .login-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        padding: 40px;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.5);
+        box-sizing: border-box;
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+        border-radius: 10px;
+      }
+
+      .login-box h2 {
+        margin: 0 0 30px;
+        padding: 0;
+        color: #fff;
+        text-align: center;
+      }
+
+      .login-box .user-box {
+        position: relative;
+      }
+
+      .login-box .user-box input {
+        width: 100%;
+        padding: 10px 0;
+        font-size: 16px;
+        color: #fff;
+        margin-bottom: 30px;
+        border: none;
+        border-bottom: 1px solid #fff;
+        outline: none;
+        background: transparent;
+      }
+      .login-box .user-box label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px 0;
+        font-size: 16px;
+        color: #fff;
+        pointer-events: none;
+        transition: 0.5s;
+      }
+
+      .login-box .user-box input:focus ~ label,
+      .login-box .user-box input:valid ~ label {
+        top: -20px;
+        left: 0;
+        color: #03e9f4;
+        font-size: 12px;
+      }
+
+      .login-box form button {
+        position: relative;
+        display: inline-block;
+        padding: 10px 20px;
+        color: #03e9f4;
+        font-size: 16px;
+        text-decoration: none;
+        text-transform: uppercase;
+        overflow: hidden;
+        transition: 0.5s;
+        margin-top: 40px;
+        letter-spacing: 4px;
+        background-color: #2d3036;
+      }
+
+      .login-box button:hover {
+        background: #03e9f4;
+        color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
+          0 0 100px #03e9f4;
+      }
+
+      .login-box button span {
+        position: absolute;
+        display: block;
+      }
+
+      .login-box button span:nth-child(1) {
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #03e9f4);
+        animation: btn-anim1 1s linear infinite;
+      }
+
+      @keyframes btn-anim1 {
+        0% {
+          left: -100%;
+        }
+        50%,
+        100% {
+          left: 100%;
+        }
+      }
+
+      .login-box button span:nth-child(2) {
+        top: -100%;
+        right: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(180deg, transparent, #03e9f4);
+        animation: btn-anim2 1s linear infinite;
+        animation-delay: 0.25s;
+      }
+
+      @keyframes btn-anim2 {
+        0% {
+          top: -100%;
+        }
+        50%,
+        100% {
+          top: 100%;
+        }
+      }
+
+      .login-box button span:nth-child(3) {
+        bottom: 0;
+        right: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(270deg, transparent, #03e9f4);
+        animation: btn-anim3 1s linear infinite;
+        animation-delay: 0.5s;
+      }
+
+      @keyframes btn-anim3 {
+        0% {
+          right: -100%;
+        }
+        50%,
+        100% {
+          right: 100%;
+        }
+      }
+
+      .login-box button span:nth-child(4) {
+        bottom: -100%;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(360deg, transparent, #03e9f4);
+        animation: btn-anim4 1s linear infinite;
+        animation-delay: 0.75s;
+      }
+
+      @keyframes btn-anim4 {
+        0% {
+          bottom: -100%;
+        }
+        50%,
+        100% {
+          bottom: 100%;
+        }
+      }
+      .navColor {
+        color: #ffff;
+      }
+      .navbar-custom {
+        background-color: #161a20;
+      }
+    </style> -->
+</head>
+
+<body style="position: relative;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Datahanks</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+
+                    <% if(!currentUser){ %>
+                        <li class="nav-item "><a class="nav-link " href="/login ">Login</a></li>
+                        <li class="active nav-item">
+                            <a class="nav-link" href="/register ">Signup</a>
+                        </li>
+                        <% } else { %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="# ">Currently Logged in as <%=currentUser.username %> </a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="/logout ">Logout</a></li>
+                            <% } %>
+
+
+
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container" style="margin: auto;">
+        <div style="background-color: black; color: white;" class="list-group-item ">
+            <h2>
+                <%= user.username %>
+            </h2>
+            <div class="jstify-conetnt-end">
+                <% if(currentUser){ %>
+
+
+                    <% if(currentUser.username===user.username){ %>
+                        <p>edit profile</p>
+                        <% } %>
+                            <% } %>
+
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div style="margin: auto;" class="col">
+                <img style="margin:auto;clear: both; height: 200px;width: 200px;" src="<%= user.image %>" alt="">
+
+            </div>
+            <div class="col">
+                <div class="list-group">
+
+
+                    <h1>
+                        <%= user.FirstName + " " + user.LastName %>
+                    </h1>
+                    <h5>
+                        <%= user.bio %>
+                    </h5>
+                    <h6>
+                        <%= user.profession %> at
+                            <%= user.college %>
+                    </h6>
+                    <hr style="margin-left: 57%;">
+                    <h5 style="margin-left:60% ;word-spacing: 15px;">
+
+                        <a style="text-decoration: none;" href="<%= user.facebook %>"><img style="height: 30;width: 30;" src="https://img.icons8.com/fluency/48/000000/facebook-new.png" />
+                        </a>
+
+                        <span> <a href="https://www.instagram.com/<%= user.instagram %>/?hl=en"><img  style="height: 35;width: 35;" src="https://img.icons8.com/color/48/000000/instagram-new--v1.png"/></a></span>
+                        <a href="https://github.com/<%= user.gitHubUsername %>/"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black" class="bi bi-github" viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                  </svg></a>
+
+                        <a href="<%= user.linkedIn %>"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                    <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                  </svg></a>
+                    </h5>
+                    <hr style="margin-left: 57%;">
+                </div>
+
+
+                <div class="">
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+        <div class="">
+
+            <hr>
+
+            <div class="">
+                <p>You can contact to
+                    <%= user.FirstName %> on :
+                        <a href="mailto:<%= user.email %>">
+                            <%= user.email %>
+                        </a>
+
+
+                </p>
+
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <div style="word-spacing: 5px;">
+                        <h4>
+                            <strong style="font-size: larger;"><%= user.FirstName %>'s skills:</strong>
+
+                        </h4>
+
+                    </div>
+                </div>
+                <div class="col" style="word-spacing: 4px;">
+                    <h6>
+                        <%  user.skills.forEach(n=>{ %>
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                              </svg>
+                            <%= n %>
+                                </li>
+                                <% })%>
+                    </h6>
+                </div>
+
+
+
+            </div>
+            <hr>
+
+
+        </div>
+        <div class="row" style="width: 100%;">
+            <p>
+                <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Posts</a>
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Github</button>
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Blogs</button>
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">Study_materials </button>
+                <!-- <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2"></button> -->
+            </p>
+
+            <div class="row">
+                <div class="" style="margin: auto;">
+                    <div class="collapse multi-collapse" id="multiCollapseExample1">
+                        <div class="">
+                            <div class="d-flex align-items-stretch">
+
+
+                                <ul>
+
+                                    <% hanks.forEach(function(hank) { %>
+                                        <li>
+                                            <div class="card" style="margin: auto;">
+                                                <img src="<%= hank.image %>" class="card-img-top" alt="...">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">
+                                                        <%= hank.name %>
+                                                    </h5>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="/hanks/<%= hank._id%>" class="btn btn-primary">view Post</a>
+                                                </div>
+                                            </div>
+                                        </li>
+
+
+
+                                        <hr>
+                                        <% }); %>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="collapse multi-collapse" id="multiCollapseExample2">
+                        <div class=" list-group" style="margin-left: 5%;">
+                            <div>
+                                <h4>
+                                    <%= user.username %>'s Github username :
+                                        <%= user.gitHubUsername %>
+                                </h4>
+                                <h5>Repositories:</h5>
+                                <hr>
+                                <% data.forEach(repo => { %>
+                                    <div class="row">
+
+                                        <div class="col">
+
+                                            <a style="text-decoration: none; color: green" href="<%= repo.html_url %> ">
+                                                <h5>
+                                                    <%= repo.name %>
+                                                </h5>
+                                            </a>
+
+
+
+
+                                        </div>
+                                        <div class="col">
+
+                                            <div style="display: flex;flex-direction: column; width: 100px;margin-left: 25%;">
+                                                <p style="background-color: rgb(62, 62, 238);color: white;" class="badge">stars:
+                                                    <%= repo.stargazers_count %>
+
+                                                </p>
+                                                <p style="background-color: black; color: white;" class="badge">
+                                                    forks:
+                                                    <% repo.forks_count %>
+
+                                                </p>
+                                                <p style="background-color: gray;color: black;" class="badge">
+
+                                                    watchers:
+                                                    <%= repo.watchers_count %>
+
+                                                </p>
+                                            </div>
+
+
+
+
+                                        </div>
+
+
+
+                                    </div>
+                                    <hr>
+
+                                    <% }) %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="" style="margin: auto;">
+                        <div class="collapse multi-collapse" id="multiCollapseExample3">
+                            <div class="">
+                                <div class="d-flex align-items-stretch">
+
+
+                                    <ul>
+
+                                        <% posts[0].forEach(function(blog) { %>
+                                            <li>
+                                                <div class="card" style="margin: auto;">
+
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">
+                                                            <%= blog.name %>
+                                                        </h5>
+                                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                        <a href="/blogs/<%= blog._id%>" class="btn btn-primary">view Post</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+
+
+                                            <hr>
+                                            <% }); %>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="" style="margin: auto;">
+                        <div class="collapse multi-collapse" id="multiCollapseExample4">
+                            <div class="">
+                                <div class="d-flex align-items-stretch">
+
+
+                                    <ul>
+
+                                        <% studies[0].forEach(function(material) { %>
+                                            <li>
+                                                <div class="card" style="margin: auto;">
+
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">
+                                                            <%= material.name %>
+                                                        </h5>
+                                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                        <a href="/materials/<%= material._id%>" class="btn btn-primary">view Post</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+
+
+                                            <hr>
+                                            <% }); %>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+
+                    <div class="col">
+
+                    </div>
+
+
+                </div>
+                <hr>
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+</body>
+
+</html>

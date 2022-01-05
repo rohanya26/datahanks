@@ -1,0 +1,164 @@
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style/main.css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <style>
+        body {
+            background-image: url(https://images.unsplash.com/photo-1547954575-855750c57bd3?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTN8fHByb2dyYW1taW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center top;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Web_Ed</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class=" nav navbar-nav navbar-right">
+                    <li><a href="/login">login</a></li>
+                    <li><a href="/register">signup</a></li>
+                    <li><a href="/logout">logout</a></li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav> -->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand chundi " href="/"><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span>Data Hanks</a>
+            </div>
+
+            <div class="collapse navbar-collapse">
+                <ul class=" nav navbar-nav navbar-right">
+                    <li>
+                        <p>
+                            <form action="/hanks" method="GET" class="form-inline">
+                                <div class="form-group">
+                                    <input type="text" name="search" placeholder="Search here..." class="form-control">
+                                    <input type="submit" value="search" class="btn btn-xs btn-hero">
+                                </div>
+
+                            </form>
+                        </p>
+                    </li>
+                    <% if(!currentUser){ %>
+                        <li class="eb"><a href="/login">Login</a></li>
+                        <li class="eb"><a href="/register">Signup</a></li>
+                        <% } else { %>
+                            <li class="eb"> <a href="#">Currently Logged in as <%=currentUser.username
+                                %></a> </li>
+                            <li class="eb"><a href="/logout">Logout</a></li>
+                            <% } %>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">About</a>
+        <a href="#">view all hanks</a>
+        <a href="#">Login </a>
+        <a href="#">Signup</a>
+    </div>
+
+    <div id="main">
+        <button class="openbtn" onclick="openNav()">&#9776; Open Sidebar</button>
+        <h2>Collapsed Sidebar</h2>
+        <p>Content...</p>
+    </div>
+
+
+    <div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
+        <!-- Overlay -->
+        <div class="overlay"></div>
+
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#bs-carousel" data-slide-to="1"></li>
+            <li data-target="#bs-carousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item slides active">
+                <div class="slide-1"></div>
+                <div class="hero">
+                    <hgroup>
+                        <h1>Welcome to our world</h1>
+                        <h3></h3>
+                    </hgroup>
+                    <!-- <button class="btn btn-hero btn-lg" role="button">See all features</button> -->
+                </div>
+            </div>
+            <div class="item slides">
+                <div class="slide-2"></div>
+                <div class="hero">
+                    <hgroup>
+                        <h1>This is the DATA HANKS</h1>
+                        <h3>The one place to get it all...!!!</h3>
+                    </hgroup>
+                    <!-- <button class="btn btn-hero btn-lg" role="button">See all features</button> -->
+                </div>
+            </div>
+            <div class="item slides">
+                <div class="slide-3"></div>
+                <div class="hero">
+                    <hgroup>
+                        <h1>Be the part of Community</h1>
+                        <h3>You can share yours thoughts and many more things...!!!</h3>
+                        <!-- <a role="button" class="btn btn-primary btn-large" href="/hanks/new">Add New Hanks</a> -->
+
+                    </hgroup>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <% if (currentUser && currentUser.isAdmin) { %>
+            <H4 class="lll">You're an admin!!</H4>
+
+            <% } %>
+                <header class="jumbotron lll ppp">
+                    <div class="container">
+
+                    </div>
+                    <h1> <span class="glyphicon glyphicon-hdd" aria-hidden="true"></span>Welcome To The Data Hanks</h1>
+
+                    <p>View our handpicked Study Materials from all over the Work.....!!!</p>
+                    <a class="btn btn-primary btn-large" href="/hanks/new">Add New Hanks</a>
+
+
+
+
+                    <div class="d-flex align-items-stretch">
+
+                </header>
+
+
+
+                </div>
+    </div>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</body>
+
+</html>

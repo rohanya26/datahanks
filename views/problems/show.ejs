@@ -1,0 +1,216 @@
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: linear-gradient(#ffffff, #b4b6b4);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Web_Ed</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class=" nav navbar-nav navbar-right">
+                    <li><a href="/login">login</a></li>
+                    <li><a href="/register">signup</a></li>
+                    <li><a href="/logout">logout</a></li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav> -->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span>Web_Ed</a>
+            </div>
+
+            <div class="collapse navbar-collapse">
+                <ul class=" nav navbar-nav navbar-right">
+                    <li><a href="/hanks">Home</a></li>
+                    <% if(!currentUser){ %>
+                        <li><a href="/login">login</a></li>
+                        <li><a href="/register">signup</a></li>
+                        <% } else { %>
+                            <li> <a href="">Currently Logged in as <%=currentUser.username
+                                %></a> </li>
+                            <li><a href="/logout">Logout</a></li>
+                            <% } %>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <div style=" box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.3);" class="container ">
+        <div class="row">
+            <div style=" box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.3);" class="col-md-3">
+                <p class="lead">Web_Ed</p>
+                <div class="list-group">
+                    <li class="list-group-item active">info</li>
+
+
+                    <!-- <li class="list-group-item">info 3</li> -->
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="">
+
+                    <div class="caption-full">
+                        <!-- <h4 class="pull-right">popular</h4> -->
+                        <h3>
+
+                            <a>
+                                <%=problem.name  %>
+                            </a>
+                        </h3>
+
+
+                        </h5>
+                        <p>
+                            <%- problem.content %>
+                        </p>
+                        <p><em>Submitted by: <a href="/users/<%= problem.author.id %> "><%=problem.author.username  %> </a> </em></p>
+                        <% if (currentUser && problem.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin ) { %>
+                            <a class="btn btn-warning btn-xs" href="/problems/<%=problem._id  %>/edit"> Edit</a>
+                            <form id="delete-form" action="/problems/<%=problem._id  %>?_method=Delete" method="post">
+                                <button class="btn btn-danger btn-xs">Delete</button>
+                            </form>
+                            <% } %>
+
+                    </div>
+                </div>
+                <form action="/problems/<%= problem._id %>/like" method="post">
+                    <div class="btn-group pull-left">
+                        <% if (currentUser && problem.likes.some(function (like) {
+                            return like.equals(currentUser._id)
+                        })) { %>
+                            <button class="btn btn-sm btn-primary">
+                                <i class="fas fa-thumbs-up"></i> Liked (<%= problem.likes.length %>)
+                            </button>
+                            <% } else { %>
+                                <button class="btn btn-sm btn-secondary">
+                                <i class="fas fa-thumbs-up"></i> Like (<%= problem.likes.length %>)
+                            </button>
+                                <% } %>
+
+                    </div>
+                </form>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#hankLikes">
+                        <span>Total likes: <i class="fas fa-thumbs-up"></i> <%= problem.likes.length %></span>
+                    </button>
+                </div>
+
+                <h3>Leave a Review</h3>
+
+                <div class="well">
+                    <div class="text-right">
+                        <a href="/problems/<%= problem._id %>/comments/new" class="btn btn-success">comment</a>
+
+                    </div>
+                    <hr>
+                    <% problem.comments.forEach(function(comment){ %>
+                        <div class="row">
+                            <div class="col-mid-12">
+                                <strong><%= comment.author.username  %></strong>
+                                <span class="pull-right">10 days ago</span>
+                                <p>
+
+                                    <%- comment.content %>
+                                </p>
+                                <% if (currentUser && comment.author.id.equals(currentUser._id)|| currentUser && currentUser.isAdmin) { %>
+
+                                    <a class="btn btn-xs btn-warning" href="/problems/<%= problem._id  %>/comments/<%=comment._id  %>/edit  ">Edit</a>
+                                    <form id="delete-form" action="/problems/<%= problem._id  %>/comments/<%=comment._id  %>?_method=DELETE" method="post">
+                                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                    </form>
+                                    <% } %>
+                            </div>
+                        </div>
+
+                        <% }) %>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Campground Likes Modal -->
+    <div id="hankLikes" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">hank likes:
+                        <%= problem.likes.length %>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Liked by:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% problem.likes.forEach(function(like) { %>
+                                <tr>
+                                    <td><span class="badge"><i class="fas fa-user"></i></span>
+                                        <%= like.username %>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                                    <% if (problem.likes.length === 0) { %>
+                                        <tr>
+                                            <td><em>No likes yet.</em></td>
+                                        </tr>
+                                        <% } %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <h1>
+    
+    </h1> -->
+
+
+
+
+
+
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js" integrity="sha384-vhJnz1OVIdLktyixHY4Uk3OHEwdQqPppqYR8+5mjsauETgLOcEynD9oPHhhz18Nw" crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+
+
+
+
+</html>

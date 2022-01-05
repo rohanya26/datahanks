@@ -1,0 +1,37 @@
+const format={ question:{ questiontext:"", options:[ { option:"" } ] } } mcq=[]
+
+<div class=" list-group ">
+    <div class="card">
+        <h4 class="list-group-item active">Top Stories</h4>
+        <hr>
+        <% data["articles"].forEach((data)=>{ %>
+            <li class="list-group-item">
+                <h5 style="color:black">
+                    <a href="/story/<%= data.title%>">
+                        <%= data.title %>
+                    </a>
+
+                </h5>
+            </li>
+
+            <% }) %>
+                <hr>
+
+    </div>
+    git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/rohanya26/.git
+git push -u origin main
+
+
+
+
+
+
+
+
+
+
+</div>

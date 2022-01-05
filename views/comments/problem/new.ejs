@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Web_Ed</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/style/main.css" />
+    <script src="https://cdn.tiny.cloud/1/4kn68kuklf4hx8scjvr1i9byjfugbhslj5gspn5ctymzpdkg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+            selector: '#mytextarea'
+        });
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: linear-gradient(#ffffff, #d9e9bb);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Web_Ed</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class=" nav navbar-nav navbar-right">
+                    <li><a href="/login">login</a></li>
+                    <li><a href="/register">signup</a></li>
+                    <li><a href="/logout">logout</a></li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav> -->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Web_Ed</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <% if(!currentUser){ %>
+                        <li><a href="/login">login</a></li>
+                        <li><a href="/register">signup</a></li>
+                        <% } else { %>
+                            <li>
+                                <a href="#">Currently Logged in as <%=currentUser.username %></a>
+                            </li>
+                            <li><a href="/logout">logout</a></li>
+                            <% } %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div style="box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.3)" class="container">
+        <div style="box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.3)" class="row">
+            <h1 class="lll" style="text-align: center">
+                Add a new comment to
+                <%= problem.name %>
+            </h1>
+            <div style="width: 30%; margin: 25px auto">
+                <form action="/problems/<%= problem._id  %>/comments " method="post">
+                    <textarea id="mytextarea" name="comment[content]" cols="200" rows="10"></textarea>
+
+
+                    <div style="box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.3)" class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block">submit!</button>
+                    </div>
+                </form>
+            </div>
+
+            <a href="/problems/<%= problem._id %> ">back</a>
+        </div>
+    </div>
+</body>
+
+</html>

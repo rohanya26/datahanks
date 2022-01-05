@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Datahanks</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+
+                    <% if(!currentUser){ %>
+                        <li class="nav-item "><a class="nav-link " href="/login ">Login</a></li>
+                        <li class="active nav-item">
+                            <a class="nav-link" href="/register ">Signup</a>
+                        </li>
+                        <% } else { %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="# ">Currently Logged in as <%=currentUser.username %> </a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="/logout ">Logout</a></li>
+                            <% } %>
+
+
+
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <div class="card" style="color: black; height:20%;width:100% ;margin-top:0% ;background-image: url(https://images.unsplash.com/photo-1518674660708-0e2c0473e68e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGJsb2clMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60);background-repeat: no-repeat;background-size: cover;">
+            <div class=" " style="margin-left:28%;margin-bottom:5%;margin-top: 5%;">
+                <h1>This is a blog section...</h1>
+                <h5>You can write and review blogs...</h5>
+                <hr style="width: 56%;">
+                <a href="/blogs/new" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Write a new blog</a>
+
+            </div>
+
+        </div>
+        <hr>
+
+        <div>
+
+
+            <ul>
+                <% blogs.forEach(n=>{ %>
+                    <div class="card mb-6">
+                        <div>
+
+
+                            <div class="row g-0">
+
+                                <div class="col-md-4">
+                                    <img src="" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8 col-sm-12">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <%= n.name %>
+                                        </h5>
+                                        <p class="card-text"><b><%= n.author.username %> </b>added a blog on
+                                            <a href="/blogs/<%= n._id %>">
+                                                <%= n.name %>
+
+                                            </a>
+                                            <p>
+                                                <%= n.timeCreated.toString().substring(1,16) %>
+                                            </p>
+                                            <p>
+                                                <%- n.snippet +"..." %>
+                                            </p>
+                                        </p>
+                                        <p class="card-text"><small class="text-muted"></small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <li>
+
+
+
+
+                    </li>
+                    <%   }) %>
+            </ul>
+        </div>
+    </div>
+
+</body>
+
+</html>

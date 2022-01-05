@@ -1,0 +1,14 @@
+mongoose.connect("mongodb://localhost:5500/data_hanks", { useNewUrlParser: true });
+
+var hankSchema = new mongoose.Schema({
+    name: String,
+    image: String
+});
+var hank = mongoose.model("hank", hankSchema);
+
+hank.create({
+        name: "data Structure ",
+        image: "https://images.unsplash.com/photo-1515524738708-327f6b0037a7?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8ZGF0YSUyMHNjaWVuY2V8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+var hanks = [
+    { name: "Data structures", image: "https://images.unsplash.com/photo-1515524738708-327f6b0037a7?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8ZGF0YSUyMHNjaWVuY2V8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }, { name: "signal processing", image: "https://images.unsplash.com/photo-1599727277707-b429a4994c15?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjV8fHNpZ25hbCUyMHByb2Nlc3N8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }, { name: "Electronic circuits", image: 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8ZWxlY3Ryb25pY3N8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' }
+]

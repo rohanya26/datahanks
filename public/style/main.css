@@ -1,0 +1,455 @@
+ .thumbnail img {
+     width: 100%;
+ }
+ 
+ .thumbnail {
+     padding: 0%;
+ }
+ 
+ .thumbnail caption-full {
+     padding: 9px;
+ }
+ 
+ .pull-right {
+     padding: 9px;
+     float: right!important;
+ }
+ 
+ #delete-form {
+     display: inline;
+ }
+ 
+ .rrr {
+     background-color: rgb(232, 235, 217);
+ }
+ 
+ .wwe {
+     background-color: rgb(224, 236, 212);
+ }
+ 
+ .qqq {
+     background-color: rgb(43, 44, 44);
+     color: aliceblue;
+ }
+ /*
+Fade content bs-carousel with hero headers
+Code snippet by maridlcrmn (Follow me on Twitter @maridlcrmn) for Bootsnipp.com
+Image credits: unsplash.com
+*/
+ /********************************/
+ /*       Fade Bs-carousel       */
+ /********************************/
+ 
+ .fade-carousel {
+     position: relative;
+     height: 100vh;
+ }
+ 
+ .fade-carousel .carousel-inner .item {
+     height: 100vh;
+ }
+ 
+ .fade-carousel .carousel-indicators>li {
+     margin: 0 2px;
+     background-color: #f39c12;
+     border-color: #f39c12;
+     opacity: .7;
+ }
+ 
+ .fade-carousel .carousel-indicators>li.active {
+     width: 10px;
+     height: 10px;
+     opacity: 1;
+ }
+ /********************************/
+ /*          Hero Headers        */
+ /********************************/
+ 
+ .hero {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     z-index: 3;
+     color: #fff;
+     text-align: center;
+     text-transform: uppercase;
+     text-shadow: 1px 1px 0 rgba(0, 0, 0, .75);
+     -webkit-transform: translate3d(-50%, -50%, 0);
+     -moz-transform: translate3d(-50%, -50%, 0);
+     -ms-transform: translate3d(-50%, -50%, 0);
+     -o-transform: translate3d(-50%, -50%, 0);
+     transform: translate3d(-50%, -50%, 0);
+ }
+ 
+ .hero h1 {
+     font-size: 6em;
+     font-weight: bold;
+     margin: 0;
+     padding: 0;
+ }
+ 
+ .fade-carousel .carousel-inner .item .hero {
+     opacity: 0;
+     -webkit-transition: 2s all ease-in-out .1s;
+     -moz-transition: 2s all ease-in-out .1s;
+     -ms-transition: 2s all ease-in-out .1s;
+     -o-transition: 2s all ease-in-out .1s;
+     transition: 2s all ease-in-out .1s;
+ }
+ 
+ .fade-carousel .carousel-inner .item.active .hero {
+     opacity: 1;
+     -webkit-transition: 2s all ease-in-out .1s;
+     -moz-transition: 2s all ease-in-out .1s;
+     -ms-transition: 2s all ease-in-out .1s;
+     -o-transition: 2s all ease-in-out .1s;
+     transition: 2s all ease-in-out .1s;
+ }
+ /********************************/
+ /*            Overlay           */
+ /********************************/
+ 
+ .overlay {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     z-index: 2;
+     background-color: #080d15;
+     opacity: .2;
+ }
+ /********************************/
+ /*          Custom Buttons      */
+ /********************************/
+ 
+ .btn.btn-lg {
+     padding: 10px 40px;
+ }
+ 
+ .btn.btn-hero,
+ .btn.btn-hero:hover,
+ .btn.btn-hero:focus {
+     color: #f5f5f5;
+     background-color: #1abc9c;
+     border-color: #1abc9c;
+     outline: none;
+     margin: 20px auto;
+ }
+ /********************************/
+ /*       Slides backgrounds     */
+ /********************************/
+ 
+ .fade-carousel .slides .slide-1,
+ .fade-carousel .slides .slide-2,
+ .fade-carousel .slides .slide-3 {
+     height: 100vh;
+     background-size: cover;
+     background-position: center center;
+     background-repeat: no-repeat;
+ }
+ 
+ .fade-carousel .slides .slide-1 {
+     background-image: url();
+ }
+ 
+ .fade-carousel .slides .slide-2 {
+     background-image: url();
+ }
+ 
+ .fade-carousel .slides .slide-3 {
+     background-image: url();
+ }
+ /********************************/
+ /*          Media Queries       */
+ /********************************/
+ 
+ @media screen and (min-width: 980px) {
+     .hero {
+         width: 980px;
+     }
+ }
+ 
+ @media screen and (max-width: 640px) {
+     .hero h1 {
+         font-size: 4em;
+     }
+ }
+ 
+ .lll {
+     color: #f5f5f5;
+ }
+ 
+ .ppp {
+     background-image: url(https://i.pinimg.com/originals/86/66/85/866685bdd4bbc516ec1a13c956d4d7bf.jpg);
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     background-position: center top;
+     background-size: cover;
+ }
+ 
+ .chundi {
+     font-size: 40px;
+ }
+ 
+ .eb {
+     font-size: 20px;
+     padding-top: 15px;
+ }
+ 
+ .flip-card {
+     background-color: transparent;
+     width: 300px;
+     height: 200px;
+     border: 1px solid #f1f1f1;
+     perspective: 1000px;
+     /* Remove this if you don't want the 3D effect */
+ }
+ /* This container is needed to position the front and back side */
+ 
+ .flip-card-inner {
+     position: relative;
+     width: 100%;
+     height: 100%;
+     text-align: center;
+     transition: transform 0.8s;
+     transform-style: preserve-3d;
+ }
+ /* Do an horizontal flip when you move the mouse over the flip box container */
+ 
+ .flip-card:hover .flip-card-inner {
+     transform: rotateY(180deg);
+ }
+ /* Position the front and back side */
+ 
+ .flip-card-front,
+ .flip-card-back {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     -webkit-backface-visibility: hidden;
+     /* Safari */
+     backface-visibility: hidden;
+ }
+ /* Style the front side (fallback if image is missing) */
+ 
+ .flip-card-front {
+     background-color: #bbb;
+     color: black;
+ }
+ /* Style the back side */
+ 
+ .flip-card-back {
+     padding: 0 auto;
+     background-color: rgb(0, 0, 0);
+     color: white;
+     transform: rotateY(180deg);
+ }
+ /* width */
+ 
+ ::-webkit-scrollbar {
+     width: 10px;
+ }
+ /* Track */
+ 
+ ::-webkit-scrollbar-track {
+     background: #f1f1f1;
+ }
+ /* Handle */
+ 
+ ::-webkit-scrollbar-thumb {
+     background: #888;
+ }
+ /* Handle on hover */
+ 
+ ::-webkit-scrollbar-thumb:hover {
+     background: #555;
+ }
+ 
+ #overlay {
+     position: fixed;
+     /* Sit on top of the page content */
+     display: none;
+     /* Hidden by default */
+     width: 100%;
+     /* Full width (cover the whole page) */
+     height: 100%;
+     /* Full height (cover the whole page) */
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background-color: rgba(0, 0, 0, 0.5);
+     /* Black background with opacity */
+     z-index: 2;
+     /* Specify a stack order in case you're using a different order for other elements */
+     cursor: pointer;
+     /* Add a pointer on hover */
+ }
+ /* The sidebar menu */
+ 
+ .sidebar {
+     height: 100%;
+     /* 100% Full-height */
+     width: 0;
+     /* 0 width - change this with JavaScript */
+     position: fixed;
+     /* Stay in place */
+     z-index: 1;
+     /* Stay on top */
+     top: 0;
+     left: 0;
+     background-color: #111;
+     /* Black*/
+     overflow-x: hidden;
+     /* Disable horizontal scroll */
+     padding-top: 60px;
+     /* Place content 60px from the top */
+     transition: 0.5s;
+     /* 0.5 second transition effect to slide in the sidebar */
+ }
+ /* The sidebar links */
+ 
+ .sidebar a {
+     padding: 8px 8px 8px 32px;
+     text-decoration: none;
+     font-size: 25px;
+     color: #818181;
+     display: block;
+     transition: 0.3s;
+ }
+ /* When you mouse over the navigation links, change their color */
+ 
+ .sidebar a:hover {
+     color: #f1f1f1;
+ }
+ /* Position and style the close button (top right corner) */
+ 
+ .sidebar .closebtn {
+     position: absolute;
+     top: 0;
+     right: 25px;
+     font-size: 36px;
+     margin-left: 50px;
+ }
+ /* The button used to open the sidebar */
+ 
+ .openbtn {
+     font-size: 20px;
+     cursor: pointer;
+     background-color: #111;
+     color: white;
+     padding: 10px 15px;
+     border: none;
+ }
+ 
+ .openbtn:hover {
+     background-color: #444;
+ }
+ /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+ 
+ #main {
+     transition: margin-left .5s;
+     /* If you want a transition effect */
+     padding: 20px;
+ }
+ /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+ 
+ @media screen and (max-height: 450px) {
+     .sidebar {
+         padding-top: 15px;
+     }
+     .sidebar a {
+         font-size: 18px;
+     }
+ }
+ /* The sidebar menu */
+ 
+ .sidebar {
+     height: 100%;
+     /* 100% Full-height */
+     width: 0;
+     /* 0 width - change this with JavaScript */
+     position: fixed;
+     /* Stay in place */
+     z-index: 1;
+     /* Stay on top */
+     top: 0;
+     left: 0;
+     background-color: #111;
+     /* Black*/
+     overflow-x: hidden;
+     /* Disable horizontal scroll */
+     padding-top: 60px;
+     /* Place content 60px from the top */
+     transition: 0.5s;
+     /* 0.5 second transition effect to slide in the sidebar */
+ }
+ /* The sidebar links */
+ 
+ .sidebar a {
+     padding: 8px 8px 8px 32px;
+     text-decoration: none;
+     font-size: 25px;
+     color: #818181;
+     display: block;
+     transition: 0.3s;
+ }
+ /* When you mouse over the navigation links, change their color */
+ 
+ .sidebar a:hover {
+     color: #f1f1f1;
+ }
+ /* Position and style the close button (top right corner) */
+ 
+ .sidebar .closebtn {
+     position: absolute;
+     top: 0;
+     right: 25px;
+     font-size: 36px;
+     margin-left: 50px;
+ }
+ /* The button used to open the sidebar */
+ 
+ .openbtn {
+     font-size: 20px;
+     cursor: pointer;
+     background-color: #111;
+     color: white;
+     padding: 10px 15px;
+     border: none;
+ }
+ 
+ .openbtn:hover {
+     background-color: #444;
+ }
+ /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+ 
+ #main {
+     transition: margin-left .5s;
+     /* If you want a transition effect */
+     padding: 20px;
+ }
+ /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+ 
+ @media screen and (max-height: 450px) {
+     .sidebar {
+         padding-top: 15px;
+     }
+     .sidebar a {
+         font-size: 18px;
+     }
+ }
+ 
+ .bharid {
+     padding-left: 58px;
+ }
+ 
+ .satya {
+     margin-top: 0%;
+ }
+ 
+ .omya {
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     white-space: pre;
+ }
