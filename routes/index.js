@@ -349,10 +349,7 @@ router.get("/users/:id", function (req, res) {
           }
           // const url = "https://api.github.com/users/" + foundUser.gitHubUsername + '/repos?sort=created:asc';
           request(options, (error, response, body) => {
-            // const headers = {
-            //   authorization: "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",
-            // }
-            // console.log(body)
+
             var data = JSON.parse(body)
             // console.log(data)
             for (let i of data) {

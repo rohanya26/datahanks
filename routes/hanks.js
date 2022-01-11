@@ -72,44 +72,17 @@ router.get("/hanks", isLoggedIn, function (req, res) {
 
 
 
-// router.post("/hanks", isLoggedIn,upload.single('image'), function(req, res) {
-//     //get data from form and add to hanks array 
-//     var name = req.body.name;
-//     var image = req.body.image;
-//     var desc = req.body.description;
-//     var link = req.body.link;
-//     var author = {
-//         id: req.user._id,
-//         username: req.user.username
-//     }
-//     var newhank = { name: name, image: image, description: desc, author: author, link: link }
-//         //hanks.push(newhank);
-
-//     hank.create(newhank, (err, newlyCreated) => {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             console.log(req.body);
-//             res.redirect("/hanks")
-//         }
-//     });
-
-
-
-
-
-// })
 
 router.post("/hanks", isLoggedIn, upload.single('image'), function (req, res) {
     cloudinary.uploader.upload(req.file.path, function (result) {
-        // add cloudinary url for the image to the campground object under image property
+
         var name = req.body.name;
         var image = result.secure_url;
         var desc = req.body.description;
 
         var snippet = desc.substring(0, 100);
 
-        // add author to campground
+
         var author = {
             id: req.user._id,
             username: req.user.username
@@ -149,7 +122,7 @@ router.post("/hanks/:id/like", isLoggedIn, function (req, res) {
             return res.redirect("/hanks");
         }
 
-        // check if req.user._id exists in foundCampground.likes
+
         var foundUserLike = foundhank.likes.some(function (like) {
             return like.equals(req.user._id);
         });
@@ -205,21 +178,13 @@ router.delete("/hanks/:id", checkHankOwnership, function (req, res) {
         if (err) {
             res.redirect("/hanks/");
         } else {
-            // req.flash('error', campground.name + ' deleted!');
+
             res.redirect("/hanks/")
         }
     })
 
 })
-// router.delete("/hanks/:id/comments/:comment_id", function(req, res) {
-//     comment.findByIdAndRemove(req.params.comment_id, function(err) {
-//         if (err) {
-//             res.redirect("back");
-//         } else {
-//             res.redirect("/hanks/" + req.params.id);
-//         }
-//     })
-// })
+
 router.get("/story/:title", (req, res) => {
     var para = req.params.title;
     request("https://newsapi.org/v2/top-headlines?country=in&category=science&apiKey=9f2635ef8e1a400cbb1d80d0a7c360ea", (error, response, body) => {
