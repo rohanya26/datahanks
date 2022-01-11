@@ -2,139 +2,203 @@
 
 <head>
     <title></title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/style/main.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <title>
+        <%= material.name %>
+    </title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: sans-serif;
-            background: linear-gradient(#ffffff, #b4b6b4);
+        }
+        
+        .placeholder {
+            margin-top: 90%;
+        }
+        
+        .navbar-fixed-top,
+        .navbar-fixed-bottom {
+            position: fixed;
+            /* <-- Look here */
+            right: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        
+        col-md-3 {
+            margin-top: 5%;
+        }
+        
+        @media only screen and (max-width: 600px) {
+            .i1 {
+                padding-top: 5%;
+                max-height: 350px;
+                max-width: 100%;
+            }
+        }
+        
+        @media screen and (min-width:1198px) {
+            .justify-content-end {
+                position: absolute;
+                right: 10px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- <nav class="navbar navbar-default">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/">Web_Ed</a>
-            </div>
-            <div class="collapse navbar-collapse">
-                <ul class=" nav navbar-nav navbar-right">
-                    <li><a href="/login">login</a></li>
-                    <li><a href="/register">signup</a></li>
-                    <li><a href="/logout">logout</a></li>
+            <a class="navbar-brand" href="#">Datahanks</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="/hanks">Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/blogs">Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="/materials">Notes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="/problems">Problem_Solving</a>
+                    </li>
 
-                </ul>
-
-            </div>
-        </div>
-    </nav> -->
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span>Web_Ed</a>
-            </div>
-
-            <div class="collapse navbar-collapse">
-                <ul class=" nav navbar-nav navbar-right">
-                    <li><a href="/hanks">Home</a></li>
                     <% if(!currentUser){ %>
-                        <li><a href="/login">login</a></li>
-                        <li><a href="/register">signup</a></li>
+                        <li class="nav-item "><a class="nav-link " href="/login ">Login</a></li>
+                        <li class="active nav-item">
+                            <a class="nav-link" href="/register ">Signup</a>
+                        </li>
                         <% } else { %>
-                            <li> <a href="">Currently Logged in as <%=currentUser.username
-                                %></a> </li>
-                            <li><a href="/logout">Logout</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="# ">Currently Logged in as <%=currentUser.username %> </a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="/logout ">Logout</a></li>
                             <% } %>
+                                <li class="nav-item">
+                                    <form class="d-flex ml-2">
+                                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                        <button class="btn btn-outline-success" type="submit">Search</button>
+                                    </form>
+                                </li>
+
+
+
 
                 </ul>
 
             </div>
         </div>
     </nav>
-    <div style=" box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.3);" class="container ">
+
+
+
+
+    <div class="container">
         <div class="row">
-            <div style=" box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.3);" class="col-md-3">
+            <div class="col-md-3">
                 <p class="lead">Web_Ed</p>
-                <div class="list-group">
-                    <li class="list-group-item active">info</li>
-                    <% if (currentUser|| currentUser && currentUser.isAdmin ) { %>
-                        <li class="list-group-item ">
-                            <h5><a class="btn btn-primary" href="<%=material.recfile %>"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download </a>
+                <div style="margin-top: 10%;" class="list-group ">
+                    <li style="background-color: rgb(26, 22, 54);color: white;" class="list-group-item active">
+                        <%= material.name %>
+                    </li>
+                    <li class="list-group-item ">
+                        <a href="<%= material.recfile %>" class="btn btn-primary btn-xs">Download</a>
+                    </li>
 
-                            </h5>
-                        </li>
-                        <% } %>
 
-                            <!-- <li class="list-group-item">info 3</li> -->
+                    <!-- <li class="list-group-item">info 3</li> -->
                 </div>
+                <hr>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9" style="margin-top: 5%;">
                 <div class="">
+                    <h1>
+                        <%= material.name %>
+                    </h1>
 
-                    <div class="caption-full">
+                    <hr>
+
+                    <h4><em> <a style="text-decoration: none;" href="/users/<%= material.author.id %> "><%=material.author.username  %> </a> </em></h4>
+                    <p style="word-wrap: break-word;">
+                        <%= material.description  %>
+                    </p>
+                    <hr>
+                    <div class="caption-full " style="display: flex;">
                         <!-- <h4 class="pull-right">popular</h4> -->
-                        <h3>
 
-                            <a>
-                                <%=material.name  %>
-                            </a>
-                        </h3>
+                        <form action="/materials/<%= material._id %>/like" method="post">
+                            <div class="btn-group pull-left">
+                                <% if (currentUser && material.likes.some(function (like) {
+                                    return like.equals(currentUser._id)
+                                })) { %>
+                                    <button class="btn btn-sm btn-primary">
+                                        <i class="fas fa-thumbs-up"></i> Liked (<%= material.likes.length %>)
+                                    </button>
+                                    <% } else { %>
+                                        <button class="btn btn-sm btn-secondary">
+                                        <i class="fas fa-thumbs-up"></i> Like (<%= material.likes.length %>)
+                                    </button>
+                                        <% } %>
+
+                            </div>
+                        </form>
 
 
                         </h5>
-                        <p>
-                            <%= material.description %>
-                        </p>
-                        <p><em>Submitted by: <a href="/users/<%= material.author.id %> "><%=material.author.username  %> </a> </em></p>
+                    </div>
+
+                    <div class="change" style="display: flex;flex-direction: row;">
+
                         <% if (currentUser && material.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin ) { %>
-                            <a class="btn btn-warning btn-xs" href="/materials/<%=material._id  %>/edit"> Edit</a>
-                            <form id="delete-form" action="/hanks/<%=material._id  %>?_method=Delete" method="post">
+                            <a style="height: 38px;" class="btn btn-warning" href="/materials/<%=material._id  %>/edit">Edit</a>
+                            <form id="delete-form" action="/materials/<%=material._id  %>?_method=Delete" method="post">
                                 <button class="btn btn-danger btn-xs">Delete</button>
                             </form>
                             <% } %>
-
                     </div>
+
                 </div>
-                <form action="/materials/<%= material._id %>/like" method="post">
-                    <div class="btn-group pull-left">
-                        <% if (currentUser && material.likes.some(function (like) {
-                            return like.equals(currentUser._id)
-                        })) { %>
-                            <button class="btn btn-sm btn-primary">
-                                <i class="fas fa-thumbs-up"></i> Liked (<%= material.likes.length %>)
-                            </button>
-                            <% } else { %>
-                                <button class="btn btn-sm btn-secondary">
-                                <i class="fas fa-thumbs-up"></i> Like (<%= material.likes.length %>)
-                            </button>
-                                <% } %>
 
-                    </div>
-                </form>
+
                 <div class="pull-right">
-                    <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#hankLikes">
+                    <button type="button" class="btn btn-xs btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <span>Total likes: <i class="fas fa-thumbs-up"></i> <%= material.likes.length %></span>
                     </button>
                 </div>
+                <hr>
 
                 <h3>Leave a Review</h3>
+                <hr>
 
                 <div class="well">
-                    <div class="text-right">
-                        <a href="/materials/<%= material._id %>/comments/new" class="btn btn-success">comment</a>
+                    <form action="/materials/<%= material._id  %>/comments " method="post" style="max-width: 100%;display: block;">
+                        <div class="btn-group " style="max-width: 100%;">
 
-                    </div>
+                            <textarea style="border-top: none;border-left: none;border-right: none;" class="form-control pull-left" name="comment[text]" cols="75" rows="2" placeholder="leave a comment" style="height: 59px; margin: 0px; width: 564px;"></textarea>
+                            <div class="form-group">
+                                <button class="btn btn-md btn-primary btn-block">comment</button>
+                            </div>
+
+
+                        </div>
+                    </form>
+
                     <hr>
+                    <h2>comments</h2>
                     <% material.comments.forEach(function(comment){ %>
                         <div class="row">
                             <div class="col-mid-12">
                                 <strong><%= comment.author.username  %></strong>
-                                <span class="pull-right">10 days ago</span>
+                                <span class="pull-right"><%= comment.timeCreated.toString().substring(3,16) %> </span>
                                 <p>
 
                                     <%= comment.text %>
@@ -156,29 +220,38 @@
 
         </div>
     </div>
-    <!-- Campground Likes Modal -->
-    <div id="hankLikes" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"> likes:
+
+                    <h4 class="modal-title">Total likes:
                         <%= material.likes.length %>
                     </h4>
                 </div>
                 <div class="modal-body">
                     <table class="table table-striped">
                         <thead>
-                            <tr>
+                            <tr class="list-group-item active">
                                 <th>Liked by:</th>
+                                <hr>
                             </tr>
+
                         </thead>
-                        <tbody>
+
+                        <tbody style="background-color: white;">
                             <% material.likes.forEach(function(like) { %>
-                                <tr>
-                                    <td><span class="badge"><i class="fas fa-user"></i></span>
-                                        <%= like.username %>
+                                <tr style="background-color: white;">
+                                    <td>
+                                        <h4><span class="badge"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+</svg></span>
+
+                                            </a>
+                                            <%= like.username %>
+                                        </h4>
                                     </td>
                                 </tr>
                                 <% }); %>
@@ -191,15 +264,14 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- <h1>
-    
-    </h1> -->
+
 
 
 

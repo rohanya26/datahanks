@@ -5,6 +5,11 @@ var materialSchema = new Schema({
     name: String,
     description: String,
     recfile: String,
+    content: String,
+    timeCreated: {
+        type: Date,
+        default: () => Date.now(),
+    },
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,

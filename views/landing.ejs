@@ -18,49 +18,59 @@
             overflow-x: hidden;
         }
         
+        .muli {
+            color: #ffffff;
+            margin: auto;
+            margin-top: 15%;
+            margin-left: 15%;
+            width: 70%;
+        }
+        
         .navItem {
             text-align: right;
             margin-left: 63%;
             font-size: 1.5rem;
             color: white;
         }
+        
+        @media screen and (max-width:600px) {
+            .muli {
+                color: #ffffff;
+                margin: auto;
+                margin-top: 25%;
+                width: 70%;
+            }
+            body {
+                background-image: url("https://images.unsplash.com/photo-1506794778225-cbf6c8df4c5c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                overflow-y: scroll;
+                overflow-x: hidden;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark " style="background-color: black;">
-            <div class="container-fluid ">
-                <div class="navbar-header ">
-                    <a class="navbar-brand navColor " href="/ "><span class="glyphicon glyphicon-hdd " aria-hidden="true "></span
-                >Web_Ed</a
-              >
-            </div>
-            <div class="collapse navbar-collapse navItem ">
-              <ul class="nav navbar-nav  " style="word-spacing: 10px;">
-                <li class="nav-item "><a class="nav-link " href="/hanks ">Posts</a></li>
-                    <li class="nav-item "><a class="nav-link " href="/blogs ">Blogs</a></li>
-                    <li class="nav-item "><a class="nav-link " href="/materials ">Study_Materials</a></li>
 
 
 
 
-                </div>
-            </div>
-        </nav>
-    </div>
-
-
-
-    <div class="container jumbotron" style="margin-top:15%;margin-left: 18%; color:white">
+    <div class="muli text-center">
         <h1 style="color: white; font-size: 5rem;">This is DataHanks...</h1>
         <h2>DataHanks is a platform to connect and share educational content</h2>
         <h2> with people...</h2>
-        <hr style="width: 75%;">
-        <h1> <a style="margin-left:40%; " href="/login" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Log In</a>
-            <a href="/register" class="btn btn-success btn-lg" role="button" aria-pressed="true">Sign Up</a>
+        <hr>
+        <% if(!currentUser){ %>
+            <h1> <a href="/login" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Log In</a>
+                <a href="/register" class="btn btn-success btn-lg" role="button" aria-pressed="true">Sign Up</a>
 
-        </h1>
+            </h1>
+            <%} else{%>
+                <a href="/hanks" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Home</a>
+                <% } %>
     </div>
 
 

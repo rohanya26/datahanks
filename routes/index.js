@@ -12,6 +12,7 @@ var multer = require('multer');
 var request = require('request')
 var blog = require("../models/blog");
 var material = require('../models/material')
+require("dotenv").config();
 
 var storage = multer.diskStorage({
   filename: function (req, file, callback) {
@@ -29,13 +30,14 @@ var upload = multer({ storage: storage, fileFilter: imageFilter })
 
 var cloudinary = require('cloudinary');
 cloudinary.config({
-  cloud_name: 'dzycsiryh',
-  api_key: '593438391767231',
-  api_secret: 'ZX4WYUGGKSavV3A5ERHl5-sM3wc'
+  cloud_name: process.env.cloud_name,
+  api_key: process.env.api_key,
+  api_secret: process.env.api_secret
 });
 
+
 router.get("/", function (req, res) {
-  res.render("landing");
+  res.render("landing", { currentUser: req.user });
 });
 //authentication route
 
@@ -180,7 +182,7 @@ router.post("/forgot", function (req, res, next) {
           service: "Gmail",
           auth: {
             user: "huntethan541@gmail.com",
-            pass: 'smoothcriminal',
+            pass: process.env.GMAIL_PW,
           },
         });
         var mailOptions = {
@@ -272,7 +274,7 @@ router.post("/reset/:token", function (req, res) {
           service: "Gmail",
           auth: {
             user: "huntethan541@gmail.com",
-            pass: 'smoothcriminal',
+            pass: process.env.GMAIL_PW,
           },
         });
         var mailOptions = {
@@ -343,7 +345,7 @@ router.get("/users/:id", function (req, res) {
               'User-Agent': 'request'
             }
             ,
-            authorization: "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"
+            authorization: process.env.githubtoken
           }
           // const url = "https://api.github.com/users/" + foundUser.gitHubUsername + '/repos?sort=created:asc';
           request(options, (error, response, body) => {

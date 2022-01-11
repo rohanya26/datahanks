@@ -6,8 +6,30 @@ var user = require("../models/user");
 const { text } = require("body-parser");
 var problem = require("../models/problem")
 
+var multer = require('multer');
+var storage = multer.diskStorage({
+    filename: function (req, file, callback) {
+        callback(null, Date.now() + file.originalname);
+    }
+});
+var imageFilter = function (req, file, cb) {
+    // accept image files only
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
+        return cb(new Error('Only image files are allowed!'), false);
+    }
+    cb(null, true);
+};
+var upload = multer({ storage: storage, fileFilter: imageFilter })
 
-router.get("/problems", function (req, res) {
+var cloudinary = require('cloudinary');
+cloudinary.config({
+    cloud_name: 'dgqsspuik',
+    api_key: '769591237185812',
+    api_secret: '2LbwQJITy-6ctacKqWLSqLJDAKw'
+});
+
+
+router.get("/problems", isLoggedIn, function (req, res) {
     if (req.query.search) {
         const regex = new RegExp(escapeRegex(req.query.search), "gi");
         problem.find({ name: regex }, (err, problems) => {
@@ -64,29 +86,31 @@ router.get("/problems", function (req, res) {
 
 // })
 
-router.post("/problems", isLoggedIn, function (req, res) {
+router.post("/problems", isLoggedIn, upload.single('image'), function (req, res) {
+    cloudinary.uploader.upload(req.file.path, function (result) {
 
-    // add cloudinary url for the image to the campground object under image property
-    var name = req.body.name;
+        // add cloudinary url for the image to the campground object under image property
+        var name = req.body.name;
+        var image = result.secure_url;
+        var content = req.body.content;
 
-    var content = req.body.content;
 
-
-    // add author to campground
-    var author = {
-        id: req.user._id,
-        username: req.user.username
-    }
-    var newproblem = { name: name, content: content, author: author }
-    problem.create(newproblem, function (err, hank) {
-        if (err) {
-            // req.flash('error', err.message);
-            return res.redirect('back');
+        // add author to campground
+        var author = {
+            id: req.user._id,
+            username: req.user.username
         }
-        res.redirect('/problems/' + hank.id);
+        var newproblem = { name: name, content: content, image: image, author: author }
+        problem.create(newproblem, function (err, problem) {
+            if (err) {
+                // req.flash('error', err.message);
+                return res.redirect('back');
+            }
+            res.redirect('/problems/' + problem.id);
 
 
 
+        });
     });
 });
 
@@ -96,7 +120,7 @@ router.get("/problems/new", isLoggedIn, function (req, res) {
     res.render("problems/new");
 })
 
-router.get("/problems/:id", function (req, res) {
+router.get("/problems/:id", isLoggedIn, function (req, res) {
     problem.findById(req.params.id).populate("comments likes").exec(function (err, foundproblem) {
         if (err) {
             req.flash('error', 'Sorry, that Content does not exist!');

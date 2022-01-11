@@ -5,7 +5,8 @@ var Comment = require("../models/comment");
 var user = require("../models/user");
 const { text } = require("body-parser");
 const request = require("request");
-const material = require('../models/material')
+const material = require('../models/material');
+require("dotenv").config();
 
 var multer = require('multer');
 var storage = multer.diskStorage({
@@ -24,12 +25,12 @@ var upload = multer({ storage: storage, fileFilter: fileFilter })
 
 var cloudinary = require('cloudinary');
 cloudinary.config({
-    cloud_name: 'dgqsspuik',
-    api_key: '769591237185812',
-    api_secret: '2LbwQJITy-6ctacKqWLSqLJDAKw'
+    cloud_name: process.env.cloud_name,
+    api_key: process.env.api_key,
+    api_secret: process.env.api_secret
 });
 
-router.get("/materials", function (req, res) {
+router.get("/materials", isLoggedIn, function (req, res) {
     if (req.query.search) {
         const regex = new RegExp(escapeRegex(req.query.search), "gi");
         material.find({ name: regex }, (err, materials) => {
@@ -89,13 +90,13 @@ router.post("/materials", isLoggedIn, upload.single('recfile'), function (req, r
         var name = req.body.name;
         var recfile = result.secure_url;
         var desc = req.body.description;
-
+        var content = desc.substring(0, 100);
         // add author to campground
         var author = {
             id: req.user._id,
             username: req.user.username
         }
-        var newhank = { name: name, recfile: recfile, description: desc, author: author }
+        var newhank = { name: name, recfile: recfile, description: desc, content: content, author: author }
         material.create(newhank, function (err, material) {
             if (err) {
                 // req.flash('error', err.message);
@@ -112,7 +113,7 @@ router.get("/materials/new", isLoggedIn, function (req, res) {
     res.render("materials/new");
 })
 
-router.get("/materials/:id", function (req, res) {
+router.get("/materials/:id", isLoggedIn, function (req, res) {
     material.findById(req.params.id).populate("comments likes").exec(function (err, foundmaterial) {
         if (err) {
             req.flash('error', 'Sorry, that Content does not exist!');
@@ -148,7 +149,7 @@ router.post("/materials/:id/like", isLoggedIn, function (req, res) {
                 console.log(err);
                 return res.redirect("/materials");
             }
-            return res.redirect("/materials/");
+            return res.redirect("/materials/" + req.params.id);
         });
     });
 });

@@ -12,8 +12,9 @@ var LocalStratey = require("passport-local");
 var methodOverride = require("method-override");
 var flash = require("connect-flash");
 
-require("dotenv").config();
 
+require("dotenv").config();
+const dburl = process.env.DB_URL;
 var commentRoutes = require("./routes/comments");
 var hankRoutes = require("./routes/hanks");
 var indexRoutes = require("./routes/index");

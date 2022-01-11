@@ -8,6 +8,7 @@ const htmlPurify = domPurifier(new JSDOM().window);
 var problemSchema = new mongoose.Schema({
     name: String,
     content: String,
+    image: String,
     snippet: {
         type: String
     },
@@ -35,7 +36,7 @@ var problemSchema = new mongoose.Schema({
 problemSchema.pre('validate', function (next) {
     if (this.content) {
         this.content = htmlPurify.sanitize(this.content);
-        // this.snippet = stripHtml(this.description.substring(0, 200)).result
+        this.snippet = this.content.substring(0, 200)
     }
     next();
 })

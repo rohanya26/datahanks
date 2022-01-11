@@ -5,26 +5,97 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>Blogs</title>
     <style>
-
+        .navbar-fixed-top,
+        .navbar-fixed-bottom {
+            position: fixed;
+            /* <-- Look here */
+            right: 0;
+            left: 0;
+            top: 0;
+            z-index: 1030;
+        }
+        
+        @media only screen and (max-width: 600px) {
+            .card1 {
+                width: 100%;
+                margin: auto;
+                display: flex;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            }
+            .card2 {
+                margin: auto;
+                margin-bottom: 5%;
+            }
+            .container {
+                margin-top: 15%;
+            }
+        }
+        
+        @media only screen and (min-width:1198px) {
+            .card1 {
+                width: 70%;
+                margin: auto;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            }
+            .card2 {
+                margin: auto;
+                margin-bottom: 2%
+            }
+            .hr {
+                display: none;
+            }
+            .rounded-start {
+                height: 270px;
+                width: 300px;
+                margin: auto;
+            }
+            .pp {
+                width: 70%;
+                margin-left: 15%;
+            }
+            .mmmm {
+                width: 70%;
+                margin-left: 15%;
+            }
+            .container {
+                margin-top: 5%;
+            }
+            .justify-content-end {
+                position: absolute;
+                right: 10px;
+            }
+        }
     </style>
 </head>
 
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Datahanks</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-end">
+
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link " aria-current="page" href="/hanks">Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/blogs">Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="/materials">Notes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="/problems">Problem_Solving</a>
                     </li>
 
                     <% if(!currentUser){ %>
@@ -38,14 +109,16 @@
                             </li>
                             <li class="nav-item"><a class="nav-link" href="/logout ">Logout</a></li>
                             <% } %>
-
+                                <!-- <li class="nav-item">
+                                    <form class="d-flex ml-2">
+                                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                        <button class="btn btn-outline-success" type="submit">Search</button>
+                                    </form>
+                                </li> -->
 
 
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+
             </div>
         </div>
     </nav>
@@ -53,7 +126,7 @@
 
     <div class="container">
         <div class="card" style="color: black; height:20%;width:100% ;margin-top:0% ;background-image: url(https://images.unsplash.com/photo-1518674660708-0e2c0473e68e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGJsb2clMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60);background-repeat: no-repeat;background-size: cover;">
-            <div class=" " style="margin-left:28%;margin-bottom:5%;margin-top: 5%;">
+            <div class="card2">
                 <h1>This is a blog section...</h1>
                 <h5>You can write and review blogs...</h5>
                 <hr style="width: 56%;">
@@ -64,52 +137,67 @@
         </div>
         <hr>
 
-        <div>
+        <div style="padding: vertical horizontal;">
+            <h3 class="list-group-item active mmmm" style="text-align: center;background-color: rgb(44, 41, 75);color: white;">Recent Blogposts</h3>
 
 
-            <ul>
-                <% blogs.forEach(n=>{ %>
-                    <div class="card mb-6">
-                        <div>
+
+            <% blogs.reverse().forEach(n=>{ %>
+                <div class="card mb-12 card1 ">
+                    <div>
 
 
-                            <div class="row g-0">
+                        <div class="row">
 
-                                <div class="col-md-4">
-                                    <img src="" class="img-fluid rounded-start" alt="...">
-                                </div>
-                                <div class="col-md-8 col-sm-12">
-                                    <div class="card-body">
-                                        <h5 class="card-title">
+                            <div class="col-md-4">
+                                <img src="<%= n.image %> " class="img-fluid rounded-start thumbnail" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body text-center">
+                                    <a style="text-decoration: none;color: black;" href="/blogs/<%= n._id %>">
+                                        <h3 class="card-title text-center" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">
                                             <%= n.name %>
-                                        </h5>
-                                        <p class="card-text"><b><%= n.author.username %> </b>added a blog on
-                                            <a href="/blogs/<%= n._id %>">
-                                                <%= n.name %>
+                                        </h3>
+                                    </a>
+                                    <hr>
+                                    <h6 class="card-text"><i>-posted by</i> <b><%= n.author.username %> </b>
 
-                                            </a>
-                                            <p>
-                                                <%= n.timeCreated.toString().substring(1,16) %>
-                                            </p>
-                                            <p>
-                                                <%- n.snippet +"..." %>
-                                            </p>
-                                        </p>
-                                        <p class="card-text"><small class="text-muted"></small></p>
+
+
+
+                                    </h6>
+
+                                    <div>
+                                        <%="on " + n.timeCreated.toString().substring(3,16) %>
+                                            <hr>
+
+                                            <p class="card-text"><small class=""><%- n.snippet +"..." %></small></p>
                                     </div>
+
+                                    <a style="background-color: #3C5BFA;color: white;font-family:Biryani;" href="/blogs/<%= n._id %> " class="btn btn-primary">Read Blog</a>
                                 </div>
                             </div>
                         </div>
+
                     </div>
-                    <li>
+
+                </div>
+                <hr class="pp">
 
 
 
 
-                    </li>
-                    <%   }) %>
-            </ul>
+
         </div>
+
+
+
+
+
+
+        <%   }) %>
+
+    </div>
     </div>
 
 </body>

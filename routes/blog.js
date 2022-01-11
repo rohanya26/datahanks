@@ -5,9 +5,33 @@ var Comment = require("../models/comment");
 var user = require("../models/user");
 const { text } = require("body-parser");
 var blog = require("../models/blog");
+require("dotenv").config();
 
 
-router.get("/blogs", function (req, res) {
+var multer = require('multer');
+var storage = multer.diskStorage({
+    filename: function (req, file, callback) {
+        callback(null, Date.now() + file.originalname);
+    }
+});
+var imageFilter = function (req, file, cb) {
+    // accept image files only
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
+        return cb(new Error('Only image files are allowed!'), false);
+    }
+    cb(null, true);
+};
+var upload = multer({ storage: storage, fileFilter: imageFilter })
+
+var cloudinary = require('cloudinary');
+cloudinary.config({
+    cloud_name: process.env.cloud_name,
+    api_key: process.env.api_key,
+    api_secret: process.env.api_secret
+});
+
+
+router.get("/blogs", isLoggedIn, function (req, res) {
     if (req.query.search) {
         const regex = new RegExp(escapeRegex(req.query.search), "gi");
         blog.find({ name: regex }, (err, blogs) => {
@@ -64,29 +88,31 @@ router.get("/blogs", function (req, res) {
 
 // })
 
-router.post("/blogs", isLoggedIn, function (req, res) {
+router.post("/blogs", isLoggedIn, upload.single('image'), function (req, res) {
+    cloudinary.uploader.upload(req.file.path, function (result) {
 
-    // add cloudinary url for the image to the campground object under image property
-    var name = req.body.name;
+        // add cloudinary url for the image to the campground object under image property
+        var name = req.body.name;
+        var image = result.secure_url;
+        var content = req.body.content;
 
-    var content = req.body.content;
 
-
-    // add author to campground
-    var author = {
-        id: req.user._id,
-        username: req.user.username
-    }
-    var newblog = { name: name, content: content, author: author }
-    blog.create(newblog, function (err, hank) {
-        if (err) {
-            // req.flash('error', err.message);
-            return res.redirect('back');
+        // add author to campground
+        var author = {
+            id: req.user._id,
+            username: req.user.username
         }
-        res.redirect('/blogs/' + hank.id);
+        var newblog = { name: name, content: content, image: image, author: author }
+        blog.create(newblog, function (err, blog) {
+            if (err) {
+                // req.flash('error', err.message);
+                return res.redirect('back');
+            }
+            res.redirect('/blogs/' + blog.id);
 
 
 
+        });
     });
 });
 
@@ -96,7 +122,7 @@ router.get("/blogs/new", isLoggedIn, function (req, res) {
     res.render("blogs/new");
 })
 
-router.get("/blogs/:id", function (req, res) {
+router.get("/blogs/:id", isLoggedIn, function (req, res) {
     blog.findById(req.params.id).populate("comments likes").exec(function (err, foundblog) {
         if (err) {
             req.flash('error', 'Sorry, that Content does not exist!');
@@ -132,7 +158,7 @@ router.post("/blogs/:id/like", isLoggedIn, function (req, res) {
                 console.log(err);
                 return res.redirect("/blogs");
             }
-            return res.redirect("/blogs/");
+            return res.redirect("/blogs/" + req.params.id);
         });
     });
 });

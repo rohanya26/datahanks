@@ -4,7 +4,9 @@ var hank = require("../models/hank");
 var Comment = require("../models/comment");
 var user = require("../models/user");
 const { text } = require("body-parser");
-const request = require("request")
+const request = require("request");
+
+require("dotenv").config();
 
 var multer = require('multer');
 var storage = multer.diskStorage({
@@ -23,19 +25,25 @@ var upload = multer({ storage: storage, fileFilter: imageFilter })
 
 var cloudinary = require('cloudinary');
 cloudinary.config({
-    cloud_name: 'dgqsspuik',
-    api_key: '769591237185812',
-    api_secret: '2LbwQJITy-6ctacKqWLSqLJDAKw'
+    cloud_name: process.env.cloud_name,
+    api_key: process.env.api_key,
+    api_secret: process.env.api_secret
 });
 
-router.get("/hanks", function (req, res) {
+router.get("/hanks", isLoggedIn, function (req, res) {
     if (req.query.search) {
         const regex = new RegExp(escapeRegex(req.query.search), "gi");
         hank.find({ name: regex }, (err, hanks) => {
             if (err) {
                 console.log(err);
             } else {
-                res.render(`hanks/hanks`, { hanks: hanks, currentUser: req.user });
+                request("https://newsapi.org/v2/top-headlines?country=in&category=science&apiKey=9f2635ef8e1a400cbb1d80d0a7c360ea", (error, response, body) => {
+                    if (!error && response.statusCode == 200) {
+                        var data = JSON.parse(body)
+
+                        res.render(`hanks/hanks`, { hanks: hanks, currentUser: req.user, data: data });
+                    }
+                })
             }
         });
 
@@ -45,11 +53,14 @@ router.get("/hanks", function (req, res) {
             if (err) {
                 console.log(err);
             } else {
-                // request("https://newsapi.org/v2/top-headlines?country=in&category=science&apiKey=9f2635ef8e1a400cbb1d80d0a7c360ea", (error, response, body) => {
-                //     if (!error && response.statusCode == 200) {
-                //         var data = JSON.parse(body)
-                //         console.log(data)
-                res.render(`hanks/hanks`, { hanks: hanks, currentUser: req.user });
+                request("https://newsapi.org/v2/top-headlines?country=in&category=science&apiKey=9f2635ef8e1a400cbb1d80d0a7c360ea", (error, response, body) => {
+                    if (!error && response.statusCode == 200) {
+                        var data = JSON.parse(body)
+
+                        res.render(`hanks/hanks`, { hanks: hanks, currentUser: req.user, data: data });
+                    }
+                })
+
 
             }
         })
@@ -120,7 +131,7 @@ router.get("/hanks/new", isLoggedIn, function (req, res) {
     res.render("hanks/new");
 })
 
-router.get("/hanks/:id", function (req, res) {
+router.get("/hanks/:id", isLoggedIn, function (req, res) {
     hank.findById(req.params.id).populate("comments likes").exec(function (err, foundhank) {
         if (err) {
             req.flash('error', 'Sorry, that Content does not exist!');
@@ -156,7 +167,7 @@ router.post("/hanks/:id/like", isLoggedIn, function (req, res) {
                 console.log(err);
                 return res.redirect("/hanks");
             }
-            return res.redirect("/hanks/");
+            return res.redirect("/hanks/" + req.params.id);
         });
     });
 });

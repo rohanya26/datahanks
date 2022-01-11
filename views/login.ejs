@@ -13,9 +13,11 @@
             margin-left: 20%;
         }
         
-        .navItem {
-            text-align: right;
-            margin-left: 73%;
+        @media screen and (min-width:600px) {
+            .justify-content-end {
+                position: absolute;
+                right: 10px;
+            }
         }
     </style>
 
@@ -29,14 +31,12 @@
         <span class="navbar-toggler-icon"></span>
       </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
-                    </li>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-end">
+
 
                     <% if(!currentUser){ %>
-                        <li class="nav-item "><a class="nav-link " href="/login ">Login</a></li>
-                        <li class="active nav-item">
+                        <li class="nav-item active"><a class="nav-link " href="/login ">Login</a></li>
+                        <li class=" nav-item">
                             <a class="nav-link" href="/register ">Signup</a>
                         </li>
                         <% } else { %>
@@ -49,10 +49,7 @@
 
 
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+
             </div>
         </div>
     </nav>

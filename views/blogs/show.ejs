@@ -1,7 +1,9 @@
 <html>
 
 <head>
-    <title></title>
+    <title>
+        <%= blog.name %>
+    </title>
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -12,39 +14,67 @@
             margin: 0;
             padding: 0;
             font-family: sans-serif;
-            background: linear-gradient(#ffffff, #b4b6b4);
+        }
+        
+        .navbar-fixed-top {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+        
+        @media only screen and (max-width: 600px) {
+            .thumbnail {
+                margin: auto;
+                height: 300px;
+                width: 100%;
+            }
+            .pull-right {
+                margin-left: 60%;
+            }
+        }
+        
+        @media only screen and (min-width: 1198px) {
+            .thumbnail {
+                height: 300px;
+                width: 70%;
+                margin-left: 15%;
+            }
+            .pull-right {
+                margin-left: 80%;
+            }
+            .col-md-10 {
+                margin-top: 1%;
+            }
+            .justify-content-end {
+                position: absolute;
+                right: 10px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/">Web_Ed</a>
-            </div>
-            <div class="collapse navbar-collapse">
-                <ul class=" nav navbar-nav navbar-right">
-                    <li><a href="/login">login</a></li>
-                    <li><a href="/register">signup</a></li>
-                    <li><a href="/logout">logout</a></li>
-
-                </ul>
-
-            </div>
-        </div>
-    </nav> -->
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Datahanks</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-end">
+
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link " aria-current="page" href="/hanks">Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/blogs">Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="/materials">Notes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="/problems">Problem_Solving</a>
                     </li>
 
                     <% if(!currentUser){ %>
@@ -58,23 +88,26 @@
                             </li>
                             <li class="nav-item"><a class="nav-link" href="/logout ">Logout</a></li>
                             <% } %>
-
+                                <!-- <li class="nav-item">
+                                    <form class="d-flex ml-2">
+                                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                        <button class="btn btn-outline-success" type="submit">Search</button>
+                                    </form>
+                                </li> -->
 
 
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+
             </div>
         </div>
     </nav>
-    <div style=" box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.3); margin-top: 5%;" class="container ">
+    <div class="container " style="margin-top: 5%;">
         <div class="row">
             <div class="col-md-2">
-                <p class="lead">DataHanks</p>
-                <div class="list-group">
-                    <li class="list-group-item active">Blog</li>
+
+                <div class="list-group " style="margin-top: 6%;">
+                    <h3 class="lead">Blog</h3>
+                    <hr>
 
 
                     <!-- <li class="list-group-item">info 3</li> -->
@@ -82,7 +115,8 @@
             </div>
             <div class="col-md-10">
                 <div class="">
-
+                    <img class="thumbnail" src="<%= blog.image %> " alt="">
+                    <hr>
                     <div style="word-wrap: break-word">
                         <!-- <h4 class="pull-right">popular</h4> -->
                         <h1 style="text-align: center;font-weight: bolder;">
@@ -98,13 +132,16 @@
                             <%- blog.content %>
                         </p>
                         <hr>
-                        <p><em>Submitted by: <a href="/users/<%= blog.author.id %> "><%=blog.author.username  %> </a> </em></p>
-                        <% if (currentUser && blog.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin ) { %>
-                            <a class="btn btn-warning btn-xs" href="/blogs/<%=blog._id  %>/edit"> Edit</a>
-                            <form id="delete-form" action="/blogs/<%=blog._id  %>?_method=Delete" method="post">
-                                <button class="btn btn-danger btn-xs">Delete</button>
-                            </form>
-                            <% } %>
+                        <h3><em>Submitted by: <a style="text-decoration: none;" href="/users/<%= blog.author.id %> "><%=blog.author.username  %> </a> </em></h3>
+                        <div class="change" style="display: flex;flex-direction: row;">
+
+                            <% if (currentUser && blog.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin ) { %>
+                                <a style="height: 38px;" class="btn btn-warning" href="/blogs/<%=blog._id  %>/edit">Edit</a>
+                                <form id="delete-form" action="/blogs/<%=blog._id  %>?_method=Delete" method="post">
+                                    <button class="btn btn-danger btn-xs">Delete</button>
+                                </form>
+                                <% } %>
+                        </div>
 
                     </div>
                 </div>
@@ -124,37 +161,54 @@
 
                     </div>
                 </form>
-                <div class="pull-right">
-                    <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#hankLikes">
+
+                <div class="">
+                    <button type="button" class="btn btn-xs btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <span>Total likes: <i class="fas fa-thumbs-up"></i> <%= blog.likes.length %></span>
                     </button>
                 </div>
+                <hr>
 
                 <h3>Leave a Review</h3>
                 <hr>
 
                 <div class="well">
-                    <div class="text-right">
-                        <a href="/blogs/<%= blog._id %>/comments/new" class="btn btn-success">comment</a>
+                    <form action="/blogs/<%= blog._id  %>/comments " method="post" style="max-width: 100%;display: block;">
+                        <div class="btn-group " style="max-width: 100%;">
 
-                    </div>
+                            <textarea class="form-control pull-left" name="comment[text]" cols="75" rows="2" placeholder="leave a comment" style="height: 59px; margin: 0px; width: 564px;"></textarea>
+                            <div class="form-group">
+                                <button class="btn btn-md btn-primary btn-block">comment</button>
+                            </div>
+
+
+                        </div>
+                    </form>
                     <hr>
+                    <h1>Comments Section</h1>
+
                     <% blog.comments.forEach(function(comment){ %>
                         <div class="row">
                             <div class="col-mid-12">
+                                <hr>
                                 <strong><%= comment.author.username  %></strong>
-                                <span class="pull-right">10 days ago</span>
+                                <span class="pull-right"><%- comment.timeCreated.toString().substring(3,16) %></span>
                                 <p>
 
                                     <%= comment.text %>
                                 </p>
-                                <% if (currentUser && comment.author.id.equals(currentUser._id)|| currentUser && currentUser.isAdmin) { %>
 
-                                    <a class="btn btn-xs btn-warning" href="/blogs/<%= blog._id  %>/comments/<%=comment._id  %>/edit  ">Edit</a>
-                                    <form id="delete-form" action="/blogs/<%= blog._id  %>/comments/<%=comment._id  %>?_method=DELETE" method="post">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
-                                    </form>
+
+
+                                <% if (currentUser && comment.author.id.equals(currentUser._id)|| currentUser && currentUser.isAdmin) { %>
+                                    <div class="" style="display: flex;flex-direction: row; word-spacing: 5px;">
+                                        <a style="height: 38px;" class="btn btn-xs btn-warning" href="/blogs/<%= blog._id  %>/comments/<%=comment._id  %>/edit  ">Edit</a>
+                                        <form id="delete-form" action="/blogs/<%= blog._id  %>/comments/<%=comment._id  %>?_method=DELETE" method="post">
+                                            <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                        </form>
+                                    </div>
                                     <% } %>
+
                             </div>
                         </div>
 
@@ -165,29 +219,36 @@
 
         </div>
     </div>
-    <!-- Campground Likes Modal -->
-    <div id="hankLikes" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">hank likes:
+
+                    <h4 class="modal-title">Total likes:
                         <%= blog.likes.length %>
                     </h4>
                 </div>
                 <div class="modal-body">
                     <table class="table table-striped">
                         <thead>
-                            <tr>
+                            <tr class="list-group-item active">
                                 <th>Liked by:</th>
+                                <hr>
                             </tr>
+
                         </thead>
-                        <tbody>
+
+                        <tbody style="background-color: white;">
                             <% blog.likes.forEach(function(like) { %>
-                                <tr>
-                                    <td><span class="badge"><i class="fas fa-user"></i></span>
-                                        <%= like.username %>
+                                <tr style="background-color: white;">
+                                    <td>
+                                        <h4><span class="badge"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+</svg></span>
+
+                                            </a>
+                                            <%= like.username %>
+                                        </h4>
                                     </td>
                                 </tr>
                                 <% }); %>
@@ -200,16 +261,12 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- <h1>
-    
-    </h1> -->
-
 
 
 

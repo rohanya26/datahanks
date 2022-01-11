@@ -26,12 +26,12 @@ git remote add origin https://github.com/rohanya26/.git
 git push -u origin main
 
 
+mongodb+srv://ethanhunt:<password>@datahanks.8reiz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
 
 
 
-
-
+ action="/hanks/<%= hank._id %>/?_method=PUT "
 
 
 </div>

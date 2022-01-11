@@ -1,178 +1,131 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New problem</title>
-    <script src="https://cdn.quilljs.com/1.1.3/quill.js"></script>
-    <script src="https://cdn.quilljs.com/1.1.3/quill.min.js"></script>
-    <script src="https://cdnjs.cloudfare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.quilljs.com/1.1.3/quill.snow.css">
-    <link rel="stylesheet" href="https://cdn.quilljs.com/1.1.3/quill.bubble.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-</head>
-
-<body>
-
-    <form action="/problems" method="post">
-        <input type="text" name="name">
-        <div id="toolbar">
-
-        </div>
-
-        <div id="editor" name="content">
-
-
-        </div>
-        <button id="saveDelta">Save Delta</button>
-        <input type="submit">
-
-    </form>
-
-
-    <script>
-        var toolbarOptions = [
-            ['bold', 'italic', 'underline', 'strike'],
-            ['blockquote', 'code-block'],
-            [{
-                'header': [1, 2, 3, 4, 5, 6, false]
-            }],
-            [{
-                'list': 'ordered'
-            }, {
-                list: 'bullet'
-            }],
-            [{
-                'script': 'sub'
-            }, {
-                'script': 'super'
-            }],
-            [{
-                'indent': '-1'
-            }, {
-                'indent': '+1'
-            }],
-            [{
-                'direction': 'rtl'
-            }],
-            [{
-                'size': ['small', false, 'large', 'huge']
-            }],
-            ['link', 'image', 'video', 'formula'],
-            [{
-                'color': []
-            }, {
-                'background': []
-            }],
-            [{
-                "font": []
-            }],
-            [{
-                'align': []
-            }]
-        ]
-        var quill = new Quill('#editor', {
-            modules: {
-                toolbar: toolbarOptions
-            },
-            theme: 'snow'
-        });
-        $('#saveDelta').click(function() {
-            let delta = quill.getContents();
-            let data = JSON.stringify(delta)
-            console.log(typeof data)
-            content = data
-
-
-        })
-    </script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-</body>
-
-</html> -->
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>Web_Ed</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/style/main.css" />
     <script src="https://cdn.tiny.cloud/1/4kn68kuklf4hx8scjvr1i9byjfugbhslj5gspn5ctymzpdkg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-
+    <title>Add Query</title>
     <script>
         tinymce.init({
             selector: '#mytextarea'
         });
     </script>
-    <style></style>
+    <style>
+        body {
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+        
+        .navbar-fixed-top {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+        
+        .navItem {
+            margin-left: 73%;
+        }
+        
+        @media screen and (max-width:600px) {
+            .row {
+                width: 70%;
+                margin: auto;
+                margin-top: 10%;
+            }
+        }
+        
+        @media screen and (min-width:1198px) {
+            .row {
+                margin: auto;
+                margin-top: 5%;
+                width: 50%;
+            }
+            .justify-content-end {
+                position: absolute;
+                right: 10px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <!-- <nav class="navbar navbar-default">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/">Web_Ed</a>
-            </div>
-            <div class="collapse navbar-collapse">
-                <ul class=" nav navbar-nav navbar-right">
-                    <li><a href="/login">login</a></li>
-                    <li><a href="/register">signup</a></li>
-                    <li><a href="/logout">logout</a></li>
+            <a class="navbar-brand" href="#">Datahanks</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="/hanks">Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/blogs">Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="/materials">Notes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="/problems">Problem_Solving</a>
+                    </li>
+
+                    <% if(!currentUser){ %>
+                        <li class="nav-item "><a class="nav-link " href="/login ">Login</a></li>
+                        <li class="active nav-item">
+                            <a class="nav-link" href="/register ">Signup</a>
+                        </li>
+                        <% } else { %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="# ">Currently Logged in as <%=currentUser.username %> </a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="/logout ">Logout</a></li>
+                            <% } %>
+                                <li class="nav-item">
+                                    <form class="d-flex ml-2">
+                                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                        <button class="btn btn-outline-success" type="submit">Search</button>
+                                    </form>
+                                </li>
+
+
+
 
                 </ul>
 
             </div>
         </div>
-    </nav> -->
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span
-            >Web_Ed</a
-          >
-        </div>
-
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <% if(!currentUser){ %>
-            <li><a href="/login">login</a></li>
-                <li><a href="/register">signup</a></li>
-                <% } else { %>
-                    <li>
-                        <a href="#">CUrrently Loged in as <%=currentUser.username %></a>
-                    </li>
-                    <li><a href="/logout">logout</a></li>
-                    <% } %>
-                        </ul>
-            </div>
-        </div>
     </nav>
-    <div style="
-        box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.3);
-        padding-top: 5%;
-        padding-bottom: 5%;
-      " class="container">
+    <div>
         <div class="row">
             <h1 class="" style="text-align: center">Add new problem</h1>
-            <div style="width: 30%; margin: 25px auto">
-                <form action="/problems" method="post">
+            <div>
+                <form action="/problems" method="post" enctype="multipart/form-data">
                     <div style="box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.3)" class="form-group">
                         <input class="form-control" type="text" name="name" placeholder="name" />
                     </div>
+                    <hr>
+                    <div class="form-group">
+                        <label for="image">Image if required...</label>
+                        <input class="form-control" id="image" type="file" name="image" accept="image" placeholder="image" />
+                    </div>
+                    <hr>
 
 
                     <textarea id="mytextarea" name="content" cols="200" rows="10"></textarea>
+                    <hr>
 
-
-                    <div class="form-group">
+                    <div class="form-group text-center">
                         <button class="btn btn-lg btn-primary btn-block">submit!</button>
                     </div>
                 </form>
             </div>
 
-            <a href="/hanks">back</a>
+            <a style="text-decoration: none;" href="/problems">back</a>
         </div>
     </div>
 </body>

@@ -40,7 +40,7 @@ var blogSchema = new mongoose.Schema({
 blogSchema.pre('validate', function (next) {
     if (this.content) {
         this.content = htmlPurify.sanitize(this.content);
-        this.snippet = this.content.substring(0, 100);
+        this.snippet = this.content.substring(0, 200);
     }
     next();
 })
